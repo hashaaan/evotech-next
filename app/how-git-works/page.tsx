@@ -3,7 +3,7 @@ import React from "react";
 export default function page() {
   return (
     <main className="container mx-auto py-5 px-14 w-full">
-      <h1 className="text-slate-800 font-bold font-mono text-3xl mb-5">
+      <h1 className="text-slate-800 font-bold font-mono text-3xl my-5">
         How Git Works
       </h1>
 
@@ -22,7 +22,7 @@ export default function page() {
             <li>
               Copy (or clone) the repository to your local machine
               <br />
-              <code className="bg-lime-500 text-blue-600 px-2 py-px rounded">
+              <code className="bg-lime-500 text-blue-700 px-2 py-px rounded">
                 git clone {`<your-repo-url>`}
               </code>
             </li>
@@ -31,11 +31,11 @@ export default function page() {
               Add a file to your local repo and <b>&ldquo;Commit&rdquo;</b>{" "}
               (save) the changes
               <br />
-              <code className="bg-lime-500 text-blue-600 px-2 py-px rounded">
+              <code className="bg-lime-500 text-blue-700 px-2 py-px rounded">
                 git add {`<your-file-name>`} or git add -A
               </code>
               <br />
-              <code className="bg-yellow-500 text-blue-600 px-2 py-px rounded">
+              <code className="bg-yellow-500 text-blue-700 px-2 py-px rounded">
                 git add status
               </code>
               <br />
@@ -47,7 +47,7 @@ export default function page() {
             <li>
               <b>&ldquo;Push&rdquo;</b> your changes to your main branch
               <br />
-              <code className="bg-lime-500 text-blue-600 px-2 py-px rounded">
+              <code className="bg-lime-500 text-blue-700 px-2 py-px rounded">
                 git push
               </code>
             </li>
@@ -59,7 +59,7 @@ export default function page() {
             <li>
               <b>&ldquo;Pull&rdquo;</b> the changes to your local machine
               <br />
-              <code className="bg-lime-500 text-blue-600 px-2 py-px rounded">
+              <code className="bg-lime-500 text-blue-700 px-2 py-px rounded">
                 git fetch -&gt; git pull
               </code>
             </li>
@@ -68,11 +68,11 @@ export default function page() {
               Create a <b>&ldquo;Branch&rdquo;</b> (version), make a change,
               commit the change
               <br />
-              <code className="bg-lime-500 text-blue-600 px-2 py-px rounded">
+              <code className="bg-lime-500 text-blue-700 px-2 py-px rounded">
                 git checkout -b {`<new-branch-name>`}
               </code>
               <br />
-              <code className="bg-yellow-500 text-blue-600 px-2 py-px rounded">
+              <code className="bg-yellow-500 text-blue-700 px-2 py-px rounded">
                 git add -A
               </code>
               <br />
@@ -93,7 +93,7 @@ export default function page() {
             <li>
               <b>&ldquo;Merge&rdquo;</b> your branch to the main branch
               <br />
-              <code className="bg-lime-500 text-blue-600 px-2 py-px rounded">
+              <code className="bg-lime-500 text-blue-700 px-2 py-px rounded">
                 git merge {`<branch-name>`}
               </code>
             </li>
@@ -114,7 +114,7 @@ export default function page() {
             <li>
               Initiate Git using
               <br />
-              <code className="bg-lime-500 text-blue-600 px-2 py-px rounded">
+              <code className="bg-lime-500 text-blue-700 px-2 py-px rounded">
                 git init
               </code>
             </li>
@@ -122,11 +122,11 @@ export default function page() {
             <li>
               Add all your local files using
               <br />
-              <code className="bg-lime-500 text-blue-600 px-2 py-px rounded">
+              <code className="bg-lime-500 text-blue-700 px-2 py-px rounded">
                 git add .
               </code>
               {` or `}
-              <code className="bg-lime-500 text-blue-600 px-2 py-px rounded">
+              <code className="bg-lime-500 text-blue-700 px-2 py-px rounded">
                 git add -A
               </code>
             </li>
@@ -134,7 +134,7 @@ export default function page() {
             <li>
               Commit your files as <b>&ldquo;Initial commit&rdquo;</b>
               <br />
-              <code className="bg-sky-500 text-black px-2 py-px rounded">
+              <code className="bg-lime-500 text-blue-700 px-2 py-px rounded">
                 git commit -m {`"Initial commit"`}
               </code>
             </li>
@@ -142,7 +142,7 @@ export default function page() {
             <li>
               Add your <b>Remote Git Url</b> to local using
               <br />
-              <code className="bg-lime-500 text-blue-600 px-2 py-px rounded">
+              <code className="bg-lime-500 text-blue-700 px-2 py-px rounded">
                 git remote add origin {`<your-repo-url>`}
               </code>
             </li>
@@ -150,8 +150,8 @@ export default function page() {
             <li>
               Push your local commit to remote using
               <br />
-              <code className="bg-lime-500 text-blue-600 px-2 py-px rounded">
-                git push origin main
+              <code className="bg-lime-500 text-blue-700 px-2 py-px rounded">
+                git push -f origin main
               </code>
             </li>
           </ol>
