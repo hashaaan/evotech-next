@@ -1,8 +1,5 @@
 {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "cSpell.words": [
-        "EVOTECH",
-        "turbopack"
-    ]
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "cSpell.words": ["EVOTE", "EVOTECH", "turbopack"]
 }
