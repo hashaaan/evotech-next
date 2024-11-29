@@ -9,7 +9,7 @@ export default function SyllabusPage() {
         <div className="flex flex-col gap-4">
           <section
             id="javascript-fundamentals"
-            className="bg-orange-100 w-full p-4 rounded-lg hidden"
+            className="bg-orange-100 w-full p-4 rounded-lg"
           >
             <h2 className="font-bold text-xl mb-4">
               Module 1: JavaScript Fundamentals
@@ -57,7 +57,12 @@ export default function SyllabusPage() {
                     Setting up the React environment with{" "}
                     <span className="text-green-600">Create Next App</span>
                   </li>
+                  <li>
+                    <span className="text-green-600">Next JS</span> Project
+                    Structure
+                  </li>
                   <li>Understanding JSX: JavaScript Syntax Extension</li>
+                  <li>Running the project on Local Dev Server</li>
                 </ul>
               </li>
 
@@ -68,6 +73,7 @@ export default function SyllabusPage() {
                   <li>Props: Passing data between components</li>
                   <li>State Management: useState Hook</li>
                   <li>Component Lifecycle (Intro to useEffect)</li>
+                  <li>Client vs Server Components</li>
                 </ul>
               </li>
 
