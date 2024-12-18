@@ -1,5 +1,6 @@
 "use client";
 
+import { redirect } from "next/navigation";
 import { useState } from "react";
 
 // This Module Contains
@@ -41,6 +42,8 @@ export default function LoginForm({ title }) {
       // Check if the login credentials are valid
       if (email === "shalithadev@gmail.com" && password === "12345") {
         // Set Authentication Token
+        localStorage.setItem("authToken", "12345");
+        redirect("/dashboard");
       } else {
         // Set the invalid credentials error
         setError("Invalid email address or password");
@@ -50,7 +53,7 @@ export default function LoginForm({ title }) {
 
   return (
     <div className="w-[380px] mx-auto">
-      <div className="bg-white shadow-md border border-gray-200 rounded-lg p-4">
+      <div className="bg-white shadow-md border border-gray-200 rounded-lg px-8 py-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* title */}
           <h3 className="text-center text-xl font-semibold text-gray-900">
@@ -139,7 +142,7 @@ export default function LoginForm({ title }) {
           {/* submit button */}
           <button
             type="submit"
-            className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
+            className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-0 font-medium rounded-lg text-sm px-5 py-2.5"
           >
             Sign in
           </button>
