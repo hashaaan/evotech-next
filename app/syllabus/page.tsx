@@ -1,6 +1,10 @@
+import Link from "next/link";
+import PrintSyllabus from "./print-syllabus";
+import { MODULE_TOOLTIPS } from "./constants";
+
 export default function SyllabusPage() {
   return (
-    <main className="container xl:max-w-[700px] mx-auto">
+    <main className="container xl:max-w-[700px] mx-auto relative">
       <div className="py-8">
         <h1 className="text-3xl w-full text-center text-purple-900 font-bold font-mono mb-5">
           React.js and Next.js Mastering Course
@@ -11,8 +15,8 @@ export default function SyllabusPage() {
             id="javascript-fundamentals"
             className="bg-orange-100 w-full p-4 rounded-lg"
           >
-            <h2 className="font-bold text-xl mb-4">
-              Module 1: JavaScript Fundamentals
+            <h2 className="font-bold text-xl mb-4 text-orange-900">
+              Module 1: JavaScript Fundamentals ✅
             </h2>
             <ol className="list-decimal flex flex-col ml-6 gap-3">
               <li>
@@ -44,11 +48,80 @@ export default function SyllabusPage() {
           </section>
 
           <section
+            id="javascript-fundamentals"
+            className="bg-cyan-100 w-full p-4 rounded-lg"
+          >
+            <h2 className="font-bold text-xl mb-4 text-cyan-900">
+              Module 2: Version Control with Git ✅
+            </h2>
+            <ol className="list-decimal flex flex-col ml-6 gap-3">
+              <li>
+                <p
+                  className="font-semibold cursor-help"
+                  title={MODULE_TOOLTIPS[1].gitExplanation}
+                >
+                  Introduction to Git
+                </p>
+                <ul className="list-disc ml-6">
+                  <li>What is a Version Control System (VCS)</li>
+                  <li>
+                    Major git providers (
+                    <span
+                      title={MODULE_TOOLTIPS[1].github}
+                      className="cursor-help hover:text-green-600"
+                    >
+                      Github
+                    </span>
+                    ,{" "}
+                    <span
+                      title={MODULE_TOOLTIPS[1].gitlab}
+                      className="cursor-help hover:text-orange-600"
+                    >
+                      Gitlab
+                    </span>
+                    ,{" "}
+                    <span
+                      title={MODULE_TOOLTIPS[1].bitbucket}
+                      className="cursor-help hover:text-blue-600"
+                    >
+                      Bitbucket
+                    </span>
+                    )
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <p className="font-semibold">
+                  <Link href="/how-git-works" className="hover:underline">
+                    How Git Works
+                  </Link>
+                </p>
+                <ul className="list-disc ml-6">
+                  <li>Create a new Github Repository</li>
+                  <li>Basic git commands</li>
+                  <li>
+                    Add current project to existing{" "}
+                    <Link
+                      href="https://www.github.com"
+                      target="_blank"
+                      className="text-blue-600 hover:underline"
+                    >
+                      GitHub
+                    </Link>{" "}
+                    repository
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </section>
+
+          <section
             id="react-basics"
             className="bg-blue-100 w-full p-4 rounded-lg"
           >
-            <h2 className="font-bold text-xl mb-4">
-              Module 2: React.js Basics
+            <h2 className="font-bold text-xl mb-4 text-blue-900">
+              Module 3: React.js Basics
             </h2>
             <ol className="list-decimal flex flex-col ml-6 gap-3">
               <li>
@@ -56,14 +129,19 @@ export default function SyllabusPage() {
                 <ul className="list-disc ml-6">
                   <li>What is React and why use it?</li>
                   <li>
-                    Setting up the React environment with{" "}
+                    Setting up the dev environment with{" "}
                     <span className="text-green-600">Create Next App</span>
                   </li>
                   <li>
-                    <span className="text-green-600">Next JS</span> Project
+                    <span className="text-green-600">Next.js</span> Project
                     Structure
                   </li>
                   <li>Understanding JSX: JavaScript Syntax Extension</li>
+                  <li>Node.js Runtime and Node Package Manager (npm)</li>
+                  <li>Dependencies vs Dev Dependencies</li>
+                  <li>
+                    NPM Commands (Ex: npm install, npm run dev, npm run build)
+                  </li>
                   <li>Running the project on Local Dev Server</li>
                 </ul>
               </li>
@@ -102,8 +180,8 @@ export default function SyllabusPage() {
             id="advanced-react"
             className="bg-green-100 w-full p-4 rounded-lg"
           >
-            <h2 className="font-bold text-xl mb-4">
-              Module 3: Advanced React.js and Next.js
+            <h2 className="font-bold text-xl mb-4 text-green-900">
+              Module 4: Advanced React.js and Next.js
             </h2>
             <ol className="list-decimal flex flex-col ml-6 gap-3">
               <li>
@@ -139,10 +217,42 @@ export default function SyllabusPage() {
                 <ul className="list-disc ml-6">
                   <li>App Router and Folder Structure</li>
                   <li>Nested Routes and Route Parameters</li>
+                  <li>Dynamic Routing</li>
                   <li>Handling Navigation and Redirection</li>
                 </ul>
               </li>
 
+              <li>
+                <p className="font-semibold">Next.js Built-in Features</p>
+                <ul className="list-disc ml-6">
+                  <li>Metadata</li>
+                  <li>Browser vs Server Caching</li>
+                  <li>Static and Dynamic Rendering</li>
+                </ul>
+              </li>
+
+              <li>
+                <p className="font-semibold">
+                  Optimizing Performance with Next.js
+                </p>
+                <ul className="list-disc ml-6">
+                  <li>Image Optimization</li>
+                  <li>Font Optimization</li>
+                  <li>Script Optimization</li>
+                  <li>Lazy Loading</li>
+                </ul>
+              </li>
+            </ol>
+          </section>
+
+          <section
+            id="advanced-react"
+            className="bg-yellow-100 w-full p-4 rounded-lg"
+          >
+            <h2 className="font-bold text-xl mb-4 text-yellow-900">
+              Module 5: REST APIs and Database Integration
+            </h2>
+            <ol className="list-decimal flex flex-col ml-6 gap-3">
               <li>
                 <p className="font-semibold">API Integration</p>
                 <ul className="list-disc ml-6">
@@ -154,14 +264,31 @@ export default function SyllabusPage() {
                   <li>Error Handling and Loading States</li>
                   <li>
                     Integrating with{" "}
-                    <span className="text-green-600">REST API</span>s
+                    <span className="text-green-600">REST API</span>&apos;s
                   </li>
+                </ul>
+              </li>
+              <li>
+                <p className="font-semibold">Introduction Databases</p>
+                <ul className="list-disc ml-6">
+                  <li>Database Management System</li>
+                  <li>Relational Databases vs Non-Relational Databases</li>
+                  <li>Overview of Mongodb: What it is and how it works</li>
+                </ul>
+              </li>
+              <li>
+                <p className="font-semibold">Other Contents</p>
+                <ul className="list-disc ml-6">
+                  <li>Authentication with Next-Auth</li>
+                  <li>Full Stack Application Development with Next.js</li>
                 </ul>
               </li>
             </ol>
           </section>
         </div>
       </div>
+
+      <PrintSyllabus />
     </main>
   );
 }
