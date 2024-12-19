@@ -15,7 +15,11 @@ export const GET = async () => {
       .limit(10)
       .toArray();
     return NextResponse.json(movies);
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error("MongoDB ERROR:: ", error);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 },
+    );
   }
 };
