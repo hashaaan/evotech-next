@@ -10,7 +10,7 @@ import { useState } from "react";
 // 4. Tailwind CSS Flex, Dark mode, Max Width
 
 // Client component for CSR
-export default function LoginForm({ title }) {
+export default function Login({ title }) {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");

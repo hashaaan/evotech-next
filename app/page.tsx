@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { signOut, auth } from "@/auth";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 
 export default async function Home() {
   const authResp = await auth();
 
   if (!authResp?.user) {
-    redirect("/login");
+    // redirect("/login");
   }
 
   return (
@@ -22,7 +22,7 @@ export default async function Home() {
           React.js and Next.js Mastering Course
         </Link>
 
-        {authResp?.user && (
+        {authResp?.user ? (
           <div className="flex flex-col mt-6">
             <h2 className="h-10 text-lg font-bold">
               Hello!{" "}
@@ -38,6 +38,13 @@ export default async function Home() {
               Sign Out
             </button>
           </div>
+        ) : (
+          <Link
+            href="/sign-in"
+            className="mt-8 bg-white text-blue-700 border-blue-700 border hover:bg-blue-800 hover:text-white h-10 px-4 py-2 rounded-lg text-sm"
+          >
+            Go to Sign in
+          </Link>
         )}
       </div>
     </main>
