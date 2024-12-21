@@ -5,6 +5,8 @@ import { signOut, auth } from "@/auth";
 export default async function Home() {
   const authResp = await auth();
 
+  console.log(authResp);
+
   if (!authResp?.user) {
     // redirect("/login");
   }

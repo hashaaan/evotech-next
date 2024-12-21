@@ -6,6 +6,10 @@ import { saltAndHashPassword } from "@/lib/utils";
 import { getUserFromDb } from "@/lib/database";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  session: {
+    strategy: "jwt",
+  },
+  secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
   providers: [
     GitHub,
     Credentials({
@@ -14,22 +18,38 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: {},
       },
       authorize: async (credentials) => {
-        let user = null;
-
-        // logic to salt and hash password
-        const pwHash = saltAndHashPassword(credentials.password);
-
-        // logic to verify if the user exists
-        user = await getUserFromDb(credentials.email, pwHash);
-
-        if (!user) {
-          // No user found, so this is their first attempt to login
-          // Optionally, this is also the place you could do a user registration
-          throw new Error("Invalid credentials.");
+        if (credentials === null) {
+          return null;
         }
 
-        // return user object with their profile data
-        return user;
+        try {
+          // logic to salt and hash password
+          const pwHash = await saltAndHashPassword(
+            credentials?.password as string,
+          );
+
+          // logic to verify if the user exists
+          const user = getUserFromDb(
+            credentials?.email as string,
+            pwHash as string,
+          );
+
+          if (user) {
+            const isMatch = user.password === credentials?.password;
+
+            if (isMatch) {
+              return user;
+            } else {
+              throw new Error("Check your password.");
+            }
+          } else {
+            // No user found, so this is their first attempt to login
+            // Optionally, this is also the place you could do a user registration
+            throw new Error("Invalid credentials.");
+          }
+        } catch (error) {
+          throw new Error(error as string);
+        }
       },
     }),
   ],

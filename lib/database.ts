@@ -1,5 +1,10 @@
-export function getUserFromDb(email: unknown, pwHash: unknown) {
-  return new Promise((resolve) => {
-    resolve({ email, pwHash });
-  });
+import { USERS } from "@/data/users";
+
+export function getUserFromDb(email: string, pwHash: string) {
+  if (email && pwHash) {
+    const found = USERS.find((user) => user.email === email);
+    return found;
+  }
+
+  return undefined;
 }
