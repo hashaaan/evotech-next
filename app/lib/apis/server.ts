@@ -37,7 +37,11 @@ export const signUpUser = async (formData: SignUpData) => {
         console.log("Server error. Please try again later.");
       } else if (status === 404) {
         console.log(status, responseBody.message);
+      } else if (status === 409) {
+        console.log("User with this email already exists.");
       }
+
+      return { status };
     } else {
       // Handle non-HTTP errors (e.g., network issues)
       console.log("Unknown error:", error);

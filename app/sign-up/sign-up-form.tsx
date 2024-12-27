@@ -13,14 +13,19 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React, { type FormEvent, useState } from "react";
 import { signUpUser } from "../lib/apis/server";
+import { useToast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
 const DEFAULT_ERROR = {
   error: false,
   message: "",
 };
 
+type APIResponse = { status: number } | undefined;
+
 export default function SignUpForm() {
   const [error, setError] = useState(DEFAULT_ERROR);
+  const { toast } = useToast();
 
   const handleSubmitForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevent form submission default behavior
@@ -35,11 +40,20 @@ export default function SignUpForm() {
         setError(DEFAULT_ERROR);
         console.log({ name, email, password, confirmPassword });
         // Call signup endpoint
-        await signUpUser({
+        const signupResp = (await signUpUser({
           name: name.toString(), // Convert form data to string
           email: email.toString(),
           password: password.toString(),
-        });
+        })) as APIResponse;
+
+        if (signupResp?.status === 409) {
+          toast({
+            variant: "destructive",
+            title: "Signup failed!",
+            description: "User with this email already exists.",
+            action: <ToastAction altText="Try again">Try again</ToastAction>,
+          });
+        }
       } else {
         setError({ error: true, message: "Passwords doesn't match." });
       }

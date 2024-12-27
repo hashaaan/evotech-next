@@ -5,6 +5,7 @@ export default function SignUpPage() {
   // Add shadcn Card, Label, Input
   // Use zod to validate form
   // Use mongodb to store user
+  // Install bcrypt
 
   return (
     <div className="container mx-auto">
