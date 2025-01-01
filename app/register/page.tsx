@@ -1,4 +1,4 @@
-import SignUpForm from "./sign-up-form";
+import RegisterForm from "./register-form";
 
 export default function SignUpPage() {
   // Create sign up form using shadcn
@@ -9,7 +9,7 @@ export default function SignUpPage() {
 
   return (
     <div className="container mx-auto">
-      <SignUpForm />
+      <RegisterForm />
     </div>
   );
 }

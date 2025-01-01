@@ -15,6 +15,7 @@ import React, { type FormEvent, useState } from "react";
 import { signUpUser } from "../lib/apis/server";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
+import Link from "next/link";
 
 const DEFAULT_ERROR = {
   error: false,
@@ -23,7 +24,7 @@ const DEFAULT_ERROR = {
 
 type APIResponse = { status: number } | undefined;
 
-export default function SignUpForm() {
+export default function RegisterForm() {
   const [error, setError] = useState(DEFAULT_ERROR);
   const { toast } = useToast();
 
@@ -63,7 +64,7 @@ export default function SignUpForm() {
   };
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <Card className="bg-blue-50/50 w-[350px]">
+      <Card className="bg-blue-50/90 w-[350px]">
         <CardHeader>
           <CardTitle className="text-center">Create an account</CardTitle>
           <CardDescription className="text-xs text-center">
@@ -110,12 +111,19 @@ export default function SignUpForm() {
                   </span>
                 )}
               </div>
+
+              <div className="flex justify-center gap-1 text-xs">
+                Already have an account?{" "}
+                <Link href="/login" className="text-blue-600 hover:underline">
+                  Sign In
+                </Link>
+              </div>
             </div>
           </CardContent>
 
           <CardFooter className="flex justify-center">
             <Button className="flex-1" type="submit">
-              Sign Up
+              Register
             </Button>
           </CardFooter>
         </form>

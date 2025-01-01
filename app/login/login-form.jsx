@@ -53,7 +53,7 @@ export default function Login({ title }) {
 
   return (
     <div className="w-[380px] mx-auto">
-      <div className="bg-white shadow-md border border-gray-200 rounded-lg px-8 py-6">
+      <div className="bg-blue-50/90 shadow-md border border-gray-200 rounded-lg px-8 py-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* title */}
           <h3 className="text-center text-xl font-semibold text-gray-900">
@@ -75,7 +75,7 @@ export default function Login({ title }) {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-gray-50 border border-gray-300 rounded-lg text-gray-900 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="bg-blue-50 border border-gray-300 rounded-lg text-gray-900 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="Enter email address"
             />
 
@@ -101,7 +101,7 @@ export default function Login({ title }) {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="bg-gray-50 border border-gray-300 rounded-lg text-gray-900 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="bg-blue-50 border border-gray-300 rounded-lg text-gray-900 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="Enter password"
             />
           </div>
@@ -144,7 +144,7 @@ export default function Login({ title }) {
             type="submit"
             className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-0 font-medium rounded-lg text-sm px-5 py-2.5"
           >
-            Sign in
+            Sign In
           </button>
 
           <div className="flex justify-center text-sm font-medium text-gray-500 space-x-1">
