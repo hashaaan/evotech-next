@@ -1,7 +1,8 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
-import SignInWithGithub from "./sign-in-github";
-import SignInWithCredentials from "./sign-in-credentials";
+import SignInWithCredentialsClient from "./sign-in-credentials-client";
+// import SignInWithGithub from "./sign-in-github";
+// import SignInWithCredentials from "./sign-in-credentials";
 
 // Server component for SSR
 export default async function SignInPage() {
@@ -11,10 +12,12 @@ export default async function SignInPage() {
     redirect("/");
   }
 
-  return (
-    <div className="flex flex-col justify-center items-center min-h-screen text-black">
-      <SignInWithCredentials />
-      <SignInWithGithub />
-    </div>
-  );
+  // return (
+  //   <div className="flex flex-col justify-center items-center min-h-screen text-black">
+  //     <SignInWithCredentials />
+  //     <SignInWithGithub />
+  //   </div>
+  // );
+
+  return <SignInWithCredentialsClient />;
 }

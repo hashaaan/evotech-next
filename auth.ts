@@ -1,9 +1,13 @@
-import NextAuth from "next-auth";
+import NextAuth, { CredentialsSignin } from "next-auth";
 import GitHub from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
 // Your own logic for dealing with plaintext password strings;
 import { saltAndHashPassword } from "@/lib/utils";
 import { getUserFromDb } from "@/lib/database";
+
+class InvalidLoginError extends CredentialsSignin {
+  code = "Invalid email or password";
+}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
@@ -40,15 +44,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             if (isMatch) {
               return user;
             } else {
-              throw new Error("Check your password.");
+              throw new InvalidLoginError();
             }
           } else {
             // No user found, so this is their first attempt to login
             // Optionally, this is also the place you could do a user registration
-            throw new Error("Invalid credentials.");
+            throw new InvalidLoginError();
           }
         } catch (error) {
-          throw new Error(error as string);
+          console.log("CATCH", error);
+          throw new InvalidLoginError();
         }
       },
     }),

@@ -21,10 +21,10 @@ export default function SignInWithCredentialsClient() {
         password,
       });
 
-      if (result?.error) {
+      if (result?.error && result?.code) {
         console.log("RESULT", result);
         // Handle invalid credentials
-        setErrorMessage(result.error);
+        setErrorMessage(result.code);
       } else {
         // Handle successful login (e.g., redirect user)
         // window.location.href = "/dashboard"; // Example redirection
@@ -79,7 +79,7 @@ export default function SignInWithCredentialsClient() {
 
             {/* Error Message */}
             {errorMessage && (
-              <div className="text-red-600 text-sm font-medium">
+              <div className="text-red-600 text-sm font-medium text-center">
                 {errorMessage}
               </div>
             )}
