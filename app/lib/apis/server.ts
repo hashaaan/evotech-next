@@ -55,9 +55,17 @@ export const getMovies = async () => {
     const moviesResp = await api.get("movies", { cache: "no-store" });
 
     if (moviesResp.ok) {
-      return moviesResp.json();
+      return moviesResp.json<
+        {
+          _id: string;
+          title: string;
+          poster: string;
+          plot: string;
+          rated: number;
+        }[]
+      >();
     } else {
-      return { error: true, message: "Something went wrong!" };
+      return undefined;
     }
   } catch (error) {
     if (error instanceof HTTPError) {

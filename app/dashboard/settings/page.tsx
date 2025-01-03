@@ -62,7 +62,12 @@ export default function SettingsPage() {
               />
               <Label htmlFor="email-notifications">Email Notifications</Label>
             </div>
-            <Button type="submit">Save Settings</Button>
+            <Button
+              type="submit"
+              className="bg-primary-500 hover:bg-primary-500/90"
+            >
+              Save Settings
+            </Button>
           </form>
         </CardContent>
       </Card>

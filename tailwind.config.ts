@@ -27,6 +27,20 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: {
+          100: "#caf0f8",
+          200: "#90e0ef",
+          300: "#00b4d8",
+          400: "#0077b6",
+          500: "#03045e",
+        },
+        secondary: {
+          100: "#c7f9cc",
+          200: "#80ed99",
+          300: "#57cc99",
+          400: "#38a3a5",
+          500: "#22577a",
+        },
       },
       fontFamily: {
         "geist-sans": "var(--font-geist-sans)",

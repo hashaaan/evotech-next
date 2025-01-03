@@ -18,9 +18,9 @@ export function UserNav() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-          <Avatar className="h-10 w-10 border-2 border-purple-500">
-            <AvatarImage src="/avatars/01.png" alt="@johndoe" />
-            <AvatarFallback className="bg-purple-500 text-white">
+          <Avatar className="h-10 w-10 border-2 border-primary-400">
+            <AvatarImage src="/images/avatar.jpg" alt="Hashan Shalitha" />
+            <AvatarFallback className="bg-primary-400 text-white">
               HS
             </AvatarFallback>
           </Avatar>
@@ -38,17 +38,17 @@ export function UserNav() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <User className="mr-2 h-4 w-4 text-purple-500" />
+            <User className="mr-2 h-4 w-4 text-primary-400" />
             <span>Profile</span>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Settings className="mr-2 h-4 w-4 text-purple-500" />
+            <Settings className="mr-2 h-4 w-4 text-primary-400" />
             <span>Settings</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <LogOut className="mr-2 h-4 w-4 text-purple-500" />
+          <LogOut className="mr-2 h-4 w-4 text-primary-400" />
           <span>Log out</span>
         </DropdownMenuItem>
       </DropdownMenuContent>

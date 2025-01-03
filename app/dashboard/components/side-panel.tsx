@@ -19,36 +19,35 @@ import {
 } from "lucide-react";
 
 const items = [
-  // { name: "Home", href: "/", icon: Home, color: "text-pink-500" },
   {
     name: "Overview",
     href: "/dashboard",
     icon: LayoutDashboard,
-    color: "text-purple-500",
+    color: "text-primary-400",
   },
   {
     name: "Movies",
     href: "/dashboard/movies",
     icon: Clapperboard,
-    color: "text-cyan-500",
+    color: "text-primary-400",
   },
   {
     name: "Users",
     href: "/dashboard/users",
     icon: Users,
-    color: "text-green-500",
+    color: "text-primary-400",
   },
   {
     name: "Create Record",
     href: "/dashboard/create",
     icon: PlusCircle,
-    color: "text-blue-500",
+    color: "text-primary-400",
   },
   {
     name: "Settings",
     href: "/dashboard/settings",
     icon: Settings,
-    color: "text-orange-500",
+    color: "text-primary-400",
   },
 ];
 

@@ -32,11 +32,11 @@ export default function DashboardLayout({
             aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
             className="text-gray-500 hover:text-gray-700"
           >
-            <Menu className="h-6 w-6" />
+            <Menu className="h-6 w-6 text-primary-400" />
           </Button>
           <div className="flex flex-1 items-center justify-between">
             <div className="flex items-center gap-4">
-              <h1 className="text-2xl font-bold text-purple-600">
+              <h1 className="text-2xl font-bold text-primary-400">
                 MFlix Dashboard
               </h1>
               <Button
