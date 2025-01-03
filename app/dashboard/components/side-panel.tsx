@@ -21,16 +21,16 @@ import {
 const items = [
   // { name: "Home", href: "/", icon: Home, color: "text-pink-500" },
   {
-    name: "Dashboard",
+    name: "Overview",
     href: "/dashboard",
     icon: LayoutDashboard,
     color: "text-purple-500",
   },
   {
-    name: "Create Record",
-    href: "/dashboard/create",
-    icon: PlusCircle,
-    color: "text-blue-500",
+    name: "Movies",
+    href: "/dashboard/movies",
+    icon: Clapperboard,
+    color: "text-cyan-500",
   },
   {
     name: "Users",
@@ -39,10 +39,10 @@ const items = [
     color: "text-green-500",
   },
   {
-    name: "Movies",
-    href: "/dashboard/movies",
-    icon: Clapperboard,
-    color: "text-cyan-500",
+    name: "Create Record",
+    href: "/dashboard/create",
+    icon: PlusCircle,
+    color: "text-blue-500",
   },
   {
     name: "Settings",

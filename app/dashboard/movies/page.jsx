@@ -23,7 +23,8 @@ export default async function DashboardPage() {
   console.log("Movies", movies);
 
   return (
-    <div className="container mt-8">
+    <div className="space-y-4">
+      <h1 className="text-3xl font-bold">Movies</h1>
       {movies ? (
         <div className="grid grid-cols-4 gap-4">
           {movies?.length &&
