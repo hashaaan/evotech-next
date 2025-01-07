@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React, { type FormEvent, useState } from "react";
-import { signUpUser } from "../lib/apis/server";
+import { signUpUser } from "@/lib/apis/server";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import Link from "next/link";

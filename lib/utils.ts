@@ -5,6 +5,7 @@ export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
 };
 
+// Your own logic for dealing with plaintext password strings;
 export const saltAndHashPassword = async (password: string) => {
   if (!password) {
     throw new Error("Password is required");

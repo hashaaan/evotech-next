@@ -1,21 +1,34 @@
-import NextAuth, { CredentialsSignin } from "next-auth";
+import NextAuth, { CredentialsSignin, type NextAuthConfig } from "next-auth";
 import GitHub from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
-// Your own logic for dealing with plaintext password strings;
 import { saltAndHashPassword } from "@/lib/utils";
 import { getUserFromDb } from "@/lib/database";
+// import { api } from "@/app/lib/api";
 
 class InvalidLoginError extends CredentialsSignin {
   code = "Invalid email or password";
 }
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+// async function refreshAccessToken(token) {
+//   console.log("Now refreshing the expired token...");
+//   try {
+//     const response = await api.post("")
+//   }
+// }
+
+export const config = {
   session: {
     strategy: "jwt",
   },
   secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
+  pages: {
+    signIn: "/login-2",
+  },
   providers: [
-    GitHub,
+    GitHub({
+      clientId: process.env.NEXT_PUBLIC_AUTH_GITHUB_ID,
+      clientSecret: process.env.NEXT_PUBLIC_AUTH_GITHUB_SECRET,
+    }),
     Credentials({
       credentials: {
         email: {},
@@ -58,4 +71,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
-});
+} satisfies NextAuthConfig;
+
+export const { handlers, signIn, signOut, auth } = NextAuth(config);

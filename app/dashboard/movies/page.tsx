@@ -1,4 +1,4 @@
-import { getMovies } from "../../lib/apis/server";
+import { getMovies } from "@/lib/apis/server";
 import MovieCard from "./movie-card";
 
 export default async function DashboardPage() {

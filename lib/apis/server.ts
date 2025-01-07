@@ -1,9 +1,9 @@
 // Server Actions
-import { api } from "@/app/lib/api";
+import { api } from "@/lib/api";
 import { HTTPError } from "ky";
 
 export const loginUser = async () => {
-  const data = await api.get("login").json();
+  const data = await api.get("v1/login").json();
   console.log("Login", data);
 };
 
@@ -16,7 +16,7 @@ type SignUpData = {
 export const signUpUser = async (formData: SignUpData) => {
   try {
     const response = await api
-      .post("signup", {
+      .post("v1/signup", {
         json: formData,
       })
       .json();
@@ -52,7 +52,7 @@ export const signUpUser = async (formData: SignUpData) => {
 
 export const getMovies = async () => {
   try {
-    const moviesResp = await api.get("movies", { cache: "no-store" });
+    const moviesResp = await api.get("v1/movies", { cache: "no-store" });
 
     if (moviesResp.ok) {
       return moviesResp.json<
