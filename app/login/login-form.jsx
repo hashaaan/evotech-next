@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { useState } from "react";
+import { signIn } from "@/lib/auth-client";
 
 // This Module Contains
 // 1. Controlled Inputs
@@ -28,7 +29,7 @@ export default function Login({ title }) {
     return { isValid: true };
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmitForm = async (e) => {
     // Prevent default form submission
     e.preventDefault();
     // Log the state stored credentials to debug console
@@ -39,22 +40,25 @@ export default function Login({ title }) {
 
     // Continue the submission only if form is valid
     if (isValid) {
-      // Check if the login credentials are valid
-      if (email === "shalithadev@gmail.com" && password === "12345") {
-        // Set Authentication Token
-        localStorage.setItem("authToken", "12345");
-        redirect("/dashboard");
-      } else {
-        // Set the invalid credentials error
-        setError("Invalid email address or password");
-      }
+      await signIn.email(
+        { email, password },
+        {
+          onSuccess: () => {
+            redirect("/dashboard");
+          },
+          onError: (ctx) => {
+            console.log(ctx.error.message);
+            setError(ctx.error.message);
+          },
+        },
+      );
     }
   };
 
   return (
     <div className="w-[380px] mx-auto">
       <div className="bg-blue-50/90 shadow-md border border-gray-200 rounded-lg px-8 py-6">
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmitForm} className="space-y-6">
           {/* title */}
           <h3 className="text-center text-xl font-semibold text-gray-900">
             {title}

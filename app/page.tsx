@@ -1,15 +1,10 @@
 import Link from "next/link";
-import { signOut, auth } from "@/auth";
 // import { redirect } from "next/navigation";
 
 export default async function Home() {
-  const authResp = await auth();
-
-  console.log(authResp);
-
-  if (!authResp?.user) {
-    // redirect("/login");
-  }
+  const authResp = {
+    user: { name: "Hashan Shalitha" },
+  };
 
   return (
     <main className="container mx-auto">
@@ -30,13 +25,7 @@ export default async function Home() {
               Hello!{" "}
               <span className="text-green-600">{authResp.user.name}</span>
             </h2>
-            <button
-              className="mt-2 bg-white text-green-600 border-green-500 border hover:bg-green-500 hover:text-black h-10 px-4 py-2 rounded-lg text-sm"
-              onClick={async () => {
-                "use server";
-                await signOut();
-              }}
-            >
+            <button className="mt-2 bg-white text-green-600 border-green-500 border hover:bg-green-500 hover:text-black h-10 px-4 py-2 rounded-lg text-sm">
               Sign Out
             </button>
           </div>
