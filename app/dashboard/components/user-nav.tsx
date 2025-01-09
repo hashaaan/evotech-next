@@ -1,5 +1,7 @@
 "use client";
 
+import { redirect } from "next/navigation";
+import { LogOut, Settings, User } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,9 +13,23 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOut, Settings, User } from "lucide-react";
+import { useSession, signOut } from "@/lib/auth-client";
 
 export function UserNav() {
+  const { data: session } = useSession();
+
+  // console.log("session", session);
+
+  const handleLogout = async () => {
+    await signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          redirect("/login");
+        },
+      },
+    });
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -29,9 +45,11 @@ export function UserNav() {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">Hashan Shalitha</p>
+            <p className="text-sm font-medium leading-none text-primary-400">
+              {session?.user.name}
+            </p>
             <p className="text-xs leading-none text-muted-foreground">
-              shalithadev@gmail.com
+              {session?.user.email}
             </p>
           </div>
         </DropdownMenuLabel>
@@ -47,7 +65,7 @@ export function UserNav() {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={handleLogout}>
           <LogOut className="mr-2 h-4 w-4 text-primary-400" />
           <span>Log out</span>
         </DropdownMenuItem>

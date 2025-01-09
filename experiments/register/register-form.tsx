@@ -1,8 +1,5 @@
 "use client";
 
-import { type FormEvent, useState } from "react";
-import Link from "next/link";
-import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -14,22 +11,22 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signUp, useSession } from "@/lib/auth-client";
-import { redirect } from "next/navigation";
+import React, { type FormEvent, useState } from "react";
+import { signUpUser } from "@/lib/apis/server";
+import { useToast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/ui/toast";
+import Link from "next/link";
 
 const DEFAULT_ERROR = {
   error: false,
   message: "",
 };
 
+type APIResponse = { status: number } | undefined;
+
 export default function RegisterForm() {
   const [error, setError] = useState(DEFAULT_ERROR);
-  const [isLoading, setLoading] = useState(false);
-  const { data: session } = useSession();
-
-  if (session) {
-    redirect("/dashboard");
-  }
+  const { toast } = useToast();
 
   const handleSubmitForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevent form submission default behavior
@@ -42,37 +39,21 @@ export default function RegisterForm() {
     if (name && email && password && confirmPassword) {
       if (password === confirmPassword) {
         setError(DEFAULT_ERROR);
-        setLoading(true);
+        console.log({ name, email, password, confirmPassword });
+        // Call signup endpoint
+        const signupResp = (await signUpUser({
+          name: name.toString(), // Convert form data to string
+          email: email.toString(),
+          password: password.toString(),
+        })) as APIResponse;
 
-        const { data, error } = await signUp.email(
-          {
-            email: email.toString(),
-            password: password.toString(),
-            name: name.toString(),
-            image: undefined,
-          },
-          {
-            onRequest: () => {
-              // console.log("onRequest", ctx);
-            },
-            onSuccess: (ctx) => {
-              console.log("onSuccess", ctx);
-              setLoading(false);
-            },
-            onError: (ctx) => {
-              // console.log("onError", ctx.error.code);
-              setError({ error: true, message: ctx.error.message });
-              setLoading(false);
-            },
-          },
-        );
-
-        if (data) {
-          console.log("data", data);
-        }
-
-        if (error) {
-          console.log("AUTH ERROR:", error);
+        if (signupResp?.status === 409) {
+          toast({
+            variant: "destructive",
+            title: "Signup failed!",
+            description: "User with this email already exists.",
+            action: <ToastAction altText="Try again">Try again</ToastAction>,
+          });
         }
       } else {
         setError({ error: true, message: "Passwords doesn't match." });
@@ -125,7 +106,7 @@ export default function RegisterForm() {
 
               <div className="flex justify-center">
                 {error.error && (
-                  <span className="text-red-600 text-xs text-center animate-pulse duration-1000">
+                  <span className="text-red-600 text-xs text-center">
                     {error.message}
                   </span>
                 )}
@@ -141,8 +122,7 @@ export default function RegisterForm() {
           </CardContent>
 
           <CardFooter className="flex justify-center">
-            <Button className="flex-1" type="submit" disabled={isLoading}>
-              {isLoading && <Loader2 className="animate-spin" />}
+            <Button className="flex-1" type="submit">
               Register
             </Button>
           </CardFooter>

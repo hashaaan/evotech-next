@@ -1,3 +1,6 @@
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import { auth } from "@/lib/auth";
 import { Suspense } from "react";
 import { DataTable } from "./components/data-table";
 import {
@@ -8,7 +11,16 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const session = await auth.api.getSession({
+    headers: await headers(), // you need to pass the headers object.
+  });
+
+  if (!session) {
+    // Redirect to dashboard if user has already logged in
+    redirect("/login");
+  }
+
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold text-gray-800">
