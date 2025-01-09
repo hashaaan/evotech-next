@@ -12,21 +12,22 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React, { type FormEvent, useState } from "react";
-import { signUpUser } from "@/lib/apis/server";
-import { useToast } from "@/hooks/use-toast";
-import { ToastAction } from "@/components/ui/toast";
+// import { signUpUser } from "@/lib/apis/server";
+// import { useToast } from "@/hooks/use-toast";
+// import { ToastAction } from "@/components/ui/toast";
 import Link from "next/link";
+import { signUp } from "@/lib/auth-client";
 
 const DEFAULT_ERROR = {
   error: false,
   message: "",
 };
 
-type APIResponse = { status: number } | undefined;
+// type APIResponse = { status: number } | undefined;
 
 export default function RegisterForm() {
   const [error, setError] = useState(DEFAULT_ERROR);
-  const { toast } = useToast();
+  // const { toast } = useToast();
 
   const handleSubmitForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevent form submission default behavior
@@ -39,21 +40,50 @@ export default function RegisterForm() {
     if (name && email && password && confirmPassword) {
       if (password === confirmPassword) {
         setError(DEFAULT_ERROR);
-        console.log({ name, email, password, confirmPassword });
+        // console.log({ name, email, password, confirmPassword });
         // Call signup endpoint
-        const signupResp = (await signUpUser({
-          name: name.toString(), // Convert form data to string
-          email: email.toString(),
-          password: password.toString(),
-        })) as APIResponse;
+        // const signupResp = (await signUpUser({
+        //   name: name.toString(), // Convert form data to string
+        //   email: email.toString(),
+        //   password: password.toString(),
+        // })) as APIResponse;
 
-        if (signupResp?.status === 409) {
-          toast({
-            variant: "destructive",
-            title: "Signup failed!",
-            description: "User with this email already exists.",
-            action: <ToastAction altText="Try again">Try again</ToastAction>,
-          });
+        // if (signupResp?.status === 409) {
+        //   toast({
+        //     variant: "destructive",
+        //     title: "Signup failed!",
+        //     description: "User with this email already exists.",
+        //     action: <ToastAction altText="Try again">Try again</ToastAction>,
+        //   });
+        // }
+
+        const { data, error } = await signUp.email(
+          {
+            email: email.toString(),
+            password: password.toString(),
+            name: name.toString(),
+            image: undefined,
+          },
+          {
+            onRequest: () => {
+              // console.log("onRequest", ctx);
+            },
+            onSuccess: (ctx) => {
+              console.log("onSuccess", ctx);
+            },
+            onError: (ctx) => {
+              // console.log("onError", ctx.error.code);
+              setError({ error: true, message: ctx.error.message });
+            },
+          },
+        );
+
+        if (data) {
+          console.log("data", data);
+        }
+
+        if (error) {
+          console.log("AUTH ERROR:", error);
         }
       } else {
         setError({ error: true, message: "Passwords doesn't match." });
