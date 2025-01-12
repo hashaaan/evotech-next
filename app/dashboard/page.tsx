@@ -1,6 +1,3 @@
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
-import { auth } from "@/lib/auth";
 import { Suspense } from "react";
 import { DataTable } from "./components/data-table";
 import {
@@ -12,22 +9,6 @@ import {
 } from "@/components/ui/card";
 
 export default async function DashboardPage() {
-  try {
-    const session = await auth.api.getSession({
-      headers: await headers(), // you need to pass the headers object.
-    });
-
-    if (!session) {
-      // Redirect to sign-in if there is no session
-      console.log("No session detected!");
-      redirect("/sign-in");
-    }
-  } catch (error) {
-    // Redirect to sign-in if there is no session
-    // redirect("/sign-in");
-    console.log("Session error", error);
-  }
-
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold text-gray-800">
