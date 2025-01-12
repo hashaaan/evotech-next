@@ -1,6 +1,6 @@
 "use client";
 
-import { type FormEvent, useState } from "react";
+import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -34,10 +34,10 @@ export default function RegisterForm() {
   const handleSubmitForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevent form submission default behavior
     const formData = new FormData(event.currentTarget);
-    const name = formData.get("name") ?? "";
-    const email = formData.get("email") ?? "";
-    const password = formData.get("password") ?? "";
-    const confirmPassword = formData.get("confirm-password") ?? "";
+    const name = formData.get("name")?.toString();
+    const email = formData.get("email")?.toString();
+    const password = formData.get("password")?.toString();
+    const confirmPassword = formData.get("confirm-password")?.toString();
 
     if (name && email && password && confirmPassword) {
       if (password === confirmPassword) {
@@ -45,12 +45,7 @@ export default function RegisterForm() {
         setLoading(true);
 
         const { data, error } = await signUp.email(
-          {
-            email: email.toString(),
-            password: password.toString(),
-            name: name.toString(),
-            image: undefined,
-          },
+          { email, password, name, image: undefined },
           {
             onRequest: () => {
               // console.log("onRequest", ctx);
@@ -85,7 +80,9 @@ export default function RegisterForm() {
     <div className="flex justify-center items-center min-h-screen">
       <Card className="bg-blue-50/90 w-[350px]">
         <CardHeader>
-          <CardTitle className="text-center">Create an account</CardTitle>
+          <CardTitle className="text-center text-lg">
+            Create an account
+          </CardTitle>
           <CardDescription className="text-xs text-center">
             Enter your information to get started
           </CardDescription>
@@ -131,9 +128,9 @@ export default function RegisterForm() {
                 )}
               </div>
 
-              <div className="flex justify-center gap-1 text-xs">
-                Already have an account?{" "}
-                <Link href="/login" className="text-blue-600 hover:underline">
+              <div className="flex justify-center text-xs text-gray-500 space-x-1">
+                <span>Already have an account?</span>
+                <Link href="/sign-in" className="text-blue-600 hover:underline">
                   Sign In
                 </Link>
               </div>
@@ -141,7 +138,11 @@ export default function RegisterForm() {
           </CardContent>
 
           <CardFooter className="flex justify-center">
-            <Button className="flex-1" type="submit" disabled={isLoading}>
+            <Button
+              className="flex-1 bg-black hover:bg-black/90"
+              type="submit"
+              disabled={isLoading}
+            >
               {isLoading && <Loader2 className="animate-spin" />}
               Register
             </Button>

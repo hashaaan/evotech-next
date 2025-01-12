@@ -4,6 +4,10 @@ import MovieCard from "./movie-card";
 export default async function DashboardPage() {
   const movies = await getMovies();
 
+  if (!movies) {
+    return null;
+  }
+
   return (
     <div className="space-y-4">
       <h1 className="text-3xl font-bold">Movies</h1>

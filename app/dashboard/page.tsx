@@ -12,13 +12,18 @@ import {
 } from "@/components/ui/card";
 
 export default async function DashboardPage() {
-  const session = await auth.api.getSession({
-    headers: await headers(), // you need to pass the headers object.
-  });
+  try {
+    const session = await auth.api.getSession({
+      headers: await headers(), // you need to pass the headers object.
+    });
 
-  if (!session) {
-    // Redirect to dashboard if user has already logged in
-    redirect("/login");
+    if (!session) {
+      // Redirect to sign-in if there is no session
+      redirect("/sign-in");
+    }
+  } catch {
+    // Redirect to sign-in if there is no session
+    redirect("/sign-in");
   }
 
   return (

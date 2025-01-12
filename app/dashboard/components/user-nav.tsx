@@ -24,7 +24,7 @@ export function UserNav() {
     await signOut({
       fetchOptions: {
         onSuccess: () => {
-          redirect("/login");
+          redirect("/sign-in");
         },
       },
     });
@@ -35,7 +35,10 @@ export function UserNav() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-10 w-10 rounded-full">
           <Avatar className="h-10 w-10 border-2 border-primary-400">
-            <AvatarImage src="/images/avatar.jpg" alt="Hashan Shalitha" />
+            <AvatarImage
+              src={session?.user.image ?? "/images/avatar.jpg"}
+              alt="Hashan Shalitha"
+            />
             <AvatarFallback className="bg-primary-400 text-white">
               HS
             </AvatarFallback>

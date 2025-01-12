@@ -114,7 +114,7 @@ export default function RegisterForm() {
 
               <div className="flex justify-center gap-1 text-xs">
                 Already have an account?{" "}
-                <Link href="/login" className="text-blue-600 hover:underline">
+                <Link href="/sign-in" className="text-blue-600 hover:underline">
                   Sign In
                 </Link>
               </div>

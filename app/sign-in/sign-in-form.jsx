@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { useState } from "react";
+import { FaGithub } from "react-icons/fa";
 import { signIn } from "@/lib/auth-client";
 
 // This Module Contains
@@ -11,7 +12,7 @@ import { signIn } from "@/lib/auth-client";
 // 4. Tailwind CSS Flex, Dark mode, Max Width
 
 // Client component for CSR
-export default function Login({ title }) {
+export default function SignInForm({ title }) {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
@@ -53,6 +54,13 @@ export default function Login({ title }) {
         },
       );
     }
+  };
+
+  const handleGithubSignIn = async () => {
+    await signIn.social({
+      provider: "github",
+      callbackURL: "/dashboard",
+    });
   };
 
   return (
@@ -157,6 +165,15 @@ export default function Login({ title }) {
               Create an account
             </a>
           </div>
+
+          <button
+            type="button"
+            className="w-full flex justify-center items-center gap-2 text-black bg-white border border-green-600 hover:bg-white/90 focus:ring-0 font-medium rounded-lg text-sm px-5 py-2.5"
+            onClick={handleGithubSignIn}
+          >
+            <FaGithub className="text-lg" />
+            <span>Sign In with Github</span>
+          </button>
         </form>
       </div>
     </div>
