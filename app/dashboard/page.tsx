@@ -1,5 +1,5 @@
 import { headers } from "next/headers";
-// import { redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { Suspense } from "react";
 import { DataTable } from "./components/data-table";
@@ -19,8 +19,8 @@ export default async function DashboardPage() {
 
     if (!session) {
       // Redirect to sign-in if there is no session
-      // redirect("/sign-in");
       console.log("No session detected!");
+      redirect("/sign-in");
     }
   } catch (error) {
     // Redirect to sign-in if there is no session
