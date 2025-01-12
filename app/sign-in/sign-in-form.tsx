@@ -18,22 +18,46 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signIn } from "@/lib/auth-client";
 
+const DEFAULT_ERROR = {
+  error: false,
+  message: "",
+};
+
 // Client component for CSR
 export default function SignInForm({ title }: { title: string }) {
   const [isLoading, setLoading] = useState(false);
   const [isLoadingGit, setLoadingGit] = useState(false);
   // Backend error handling
-  const [error, setError] = useState("");
+  const [error, setError] = useState(DEFAULT_ERROR);
+
+  const validateForm = ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
+    if (email === "") {
+      setError({ error: true, message: "Email address cannot be empty" });
+      return false;
+    } else if (password === "") {
+      setError({ error: true, message: "Password cannot be empty" });
+      return false;
+    }
+
+    setError(DEFAULT_ERROR);
+    return true;
+  };
 
   const handleSubmitForm = async (event: FormEvent<HTMLFormElement>) => {
     // Prevent default form submission
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const email = formData.get("email")?.toString();
-    const password = formData.get("password")?.toString();
+    const email = formData.get("email")?.toString() ?? "";
+    const password = formData.get("password")?.toString() ?? "";
 
     // Continue the submission only if form is valid
-    if (email && password) {
+    if (validateForm({ email, password })) {
       setLoading(true);
       await signIn.email(
         { email, password },
@@ -42,9 +66,8 @@ export default function SignInForm({ title }: { title: string }) {
             redirect("/dashboard");
           },
           onError: (ctx) => {
+            setError({ error: true, message: ctx.error.message });
             setLoading(false);
-            console.log(ctx.error.message);
-            setError(ctx.error.message);
           },
         },
       );
@@ -98,9 +121,9 @@ export default function SignInForm({ title }: { title: string }) {
 
             {/* error section */}
             <div className="flex justify-center">
-              {error && error !== "" && (
+              {error.error && (
                 <span className="text-red-600 text-xs text-center animate-pulse duration-1000">
-                  {error}
+                  {error.message}
                 </span>
               )}
             </div>

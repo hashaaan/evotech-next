@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
-import SignInForm from "./sign-in-form-n";
+import SignInForm from "./sign-in-form";
 
 // Server component for SSR
 export default async function LoginPage() {
