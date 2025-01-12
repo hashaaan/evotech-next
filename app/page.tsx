@@ -1,10 +1,11 @@
 import Link from "next/link";
-// import { redirect } from "next/navigation";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
 
 export default async function Home() {
-  const authResp = {
-    user: { name: "Hashan Shalitha" },
-  };
+  const session = await auth.api.getSession({
+    headers: await headers(), // you need to pass the headers object.
+  });
 
   return (
     <main className="container mx-auto">
@@ -19,15 +20,17 @@ export default async function Home() {
           React.js and Next.js Mastering Course
         </Link>
 
-        {authResp?.user ? (
+        {session?.user ? (
           <div className="flex flex-col mt-6">
             <h2 className="h-10 text-lg font-bold">
-              Hello!{" "}
-              <span className="text-green-600">{authResp.user.name}</span>
+              Hello! <span className="text-green-600">{session.user.name}</span>
             </h2>
-            <button className="mt-2 bg-white text-green-600 border-green-500 border hover:bg-green-500 hover:text-black h-10 px-4 py-2 rounded-lg text-sm">
-              Sign Out
-            </button>
+            <Link
+              href="/dashboard"
+              className="mt-2 text-center bg-white text-green-600 border-green-500 border hover:bg-green-500 hover:text-black h-10 px-4 py-2 rounded-lg text-sm"
+            >
+              Go to Dashboard
+            </Link>
           </div>
         ) : (
           <Link
