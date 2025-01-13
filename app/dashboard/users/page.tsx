@@ -6,7 +6,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { UserTable } from "../components/user-table";
+import { Shell } from "lucide-react";
+import UserData from "./user-data";
 
 export default function UsersPage() {
   return (
@@ -18,8 +19,14 @@ export default function UsersPage() {
           <CardDescription>View and manage user accounts.</CardDescription>
         </CardHeader>
         <CardContent>
-          <Suspense fallback={<div>Loading users...</div>}>
-            <UserTable />
+          <Suspense
+            fallback={
+              <div className="flex justify-center items-center h-[186.5px]">
+                <Shell className="animate-spin duration-1000 text-primary-400" />
+              </div>
+            }
+          >
+            <UserData />
           </Suspense>
         </CardContent>
       </Card>

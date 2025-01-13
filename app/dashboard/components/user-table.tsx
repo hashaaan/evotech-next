@@ -11,43 +11,14 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import type { User } from "@/lib/types";
 
-type User = {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-  status: "active" | "inactive";
-};
-
-export function UserTable() {
-  const [users, setUsers] = useState<User[]>([
-    {
-      id: "1",
-      name: "John Doe",
-      email: "john@example.com",
-      role: "Admin",
-      status: "active",
-    },
-    {
-      id: "2",
-      name: "Jane Smith",
-      email: "jane@example.com",
-      role: "User",
-      status: "active",
-    },
-    {
-      id: "3",
-      name: "Bob Johnson",
-      email: "bob@example.com",
-      role: "User",
-      status: "inactive",
-    },
-  ]);
+export function UserTable({ users }: { users: User[] }) {
+  const [usersArr, setUsers] = useState(users);
 
   const toggleUserStatus = (id: string) => {
     setUsers(
-      users.map((user) =>
+      usersArr.map((user) =>
         user.id === id
           ? {
               ...user,
@@ -70,14 +41,14 @@ export function UserTable() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {users.map((user) => (
-          <TableRow key={user.id}>
+        {usersArr.map((user, id) => (
+          <TableRow key={id}>
             <TableCell>{user.name}</TableCell>
             <TableCell>{user.email}</TableCell>
             <TableCell>{user.role}</TableCell>
             <TableCell>
               <Badge
-                variant={user.status === "active" ? "default" : "secondary"}
+                variant={user.status === "active" ? "success" : "secondary"}
               >
                 {user.status}
               </Badge>
