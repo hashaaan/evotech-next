@@ -48,4 +48,4 @@ pnpm prettier:write
 
 ### References:
 
-- Next-Auth: [Stack Overflow](https://stackoverflow.com/questions/78162684/how-to-implement-next-auth-v-5-for-external-api-login-in-next-js-14-and-app-rout)
+- Dice UI Components: [diceui.com](https://www.diceui.com/)

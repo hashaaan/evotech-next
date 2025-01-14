@@ -32,15 +32,15 @@ const items = [
     color: "text-primary-400",
   },
   {
-    name: "Users",
-    href: "/dashboard/users",
-    icon: Users,
+    name: "Add Movie",
+    href: "/dashboard/add-movie",
+    icon: PlusCircle,
     color: "text-primary-400",
   },
   {
-    name: "Create Record",
-    href: "/dashboard/create",
-    icon: PlusCircle,
+    name: "Users",
+    href: "/dashboard/users",
+    icon: Users,
     color: "text-primary-400",
   },
   {

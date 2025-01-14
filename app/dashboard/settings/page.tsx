@@ -30,8 +30,8 @@ export default function SettingsPage() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-3xl font-bold">Settings</h1>
-      <Card>
+      <h1 className="text-3xl font-bold hidden">Settings</h1>
+      <Card className="max-w-2xl mx-auto">
         <CardHeader>
           <CardTitle>General Settings</CardTitle>
           <CardDescription>Manage your dashboard preferences.</CardDescription>
@@ -64,7 +64,7 @@ export default function SettingsPage() {
             </div>
             <Button
               type="submit"
-              className="bg-primary-500 hover:bg-primary-500/90"
+              className="bg-primary-400 hover:bg-primary-400/90"
             >
               Save Settings
             </Button>

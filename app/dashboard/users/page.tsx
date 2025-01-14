@@ -12,7 +12,7 @@ import UserData from "./user-data";
 export default function UsersPage() {
   return (
     <div className="space-y-4">
-      <h1 className="text-3xl font-bold">Users</h1>
+      <h1 className="text-3xl font-bold hidden">Users</h1>
       <Card>
         <CardHeader>
           <CardTitle>User Management</CardTitle>

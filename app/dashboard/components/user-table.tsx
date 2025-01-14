@@ -48,7 +48,8 @@ export function UserTable({ users }: { users: User[] }) {
             <TableCell>{user.role}</TableCell>
             <TableCell>
               <Badge
-                variant={user.status === "active" ? "success" : "secondary"}
+                variant={user.status === "active" ? "success" : "default"}
+                className="min-w-[66.7px] justify-center"
               >
                 {user.status}
               </Badge>
@@ -58,6 +59,7 @@ export function UserTable({ users }: { users: User[] }) {
                 variant="outline"
                 size="sm"
                 onClick={() => toggleUserStatus(user.id)}
+                className="min-w-[82.7px]"
               >
                 {user.status === "active" ? "Deactivate" : "Activate"}
               </Button>

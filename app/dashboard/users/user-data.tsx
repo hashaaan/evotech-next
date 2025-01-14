@@ -30,7 +30,9 @@ export default async function UserData() {
 
     return (
       <div className="flex justify-center items-center h-[186.5px]">
-        <p className="text-red-700">No User Data Available!</p>
+        <p className="text-red-700 font-medium animate-pulse duration-1000">
+          No User Data Available!
+        </p>
       </div>
     );
   }
