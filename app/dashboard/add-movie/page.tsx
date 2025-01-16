@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,19 +22,29 @@ import { Textarea } from "@/components/ui/textarea";
 import { GENRES, RATINGS } from "@/lib/constants";
 import { type ListItem, MultiSelect } from "@/components/multi-select";
 
+// Create movie mongodb server action
+export const createMovie = () => {
+  //
+};
+
 export default function CreateRecordPage() {
-  const router = useRouter();
+  const [genres, setGenres] = useState<string[]>([]);
+  const [rated, setRated] = useState("");
   const genresList: ListItem[] = GENRES.map((genre) => ({
     label: genre,
     value: genre,
   }));
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would typically send a request to your API to create the record
-    // Reset form
-    // Redirect back to the dashboard
-    router.push("/dashboard");
+  const handleSubmitForm = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const title = formData.get("title")?.toString();
+    const year = Number(formData.get("year"));
+    const plot = formData.get("plot")?.toString();
+
+    if (title && year && plot && rated) {
+      console.log({ title, year, plot, rated, genres });
+    }
   };
 
   return (
@@ -46,42 +56,43 @@ export default function CreateRecordPage() {
           <CardDescription>Add a movie to the Mflix database.</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmitForm} className="space-y-4">
             <div>
               <Label htmlFor="title">Movie Title</Label>
-              <Input id="title" placeholder="Enter the movie title" />
-            </div>
-            <div>
-              <Label htmlFor="year">Movie Year</Label>
-              <Input id="year" type="number" placeholder="Enter the year" />
-            </div>
-            <div>
-              <Label htmlFor="plot">Movie Plot</Label>
-              <Textarea id="plot" placeholder="Enter the movie plot" />
-            </div>
-            <div>
-              {/* <Label htmlFor="genres">Movie Genres</Label> */}
-              {/* <Select>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select genres" />
-                </SelectTrigger>
-                <SelectContent>
-                  {GENRES.map((genre) => (
-                    <SelectItem key={genre} value={genre}>
-                      {genre}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select> */}
-              <MultiSelect
-                list={genresList}
-                label="Movie Genres"
-                placeholder="Select movie genres"
+              <Input
+                id="title"
+                name="title"
+                placeholder="Enter the movie title"
               />
             </div>
             <div>
-              <Label htmlFor="role">Movie Rating</Label>
-              <Select>
+              <Label htmlFor="year">Movie Year</Label>
+              <Input
+                id="year"
+                name="year"
+                type="number"
+                placeholder="Enter the year"
+              />
+            </div>
+            <div>
+              <Label htmlFor="plot">Movie Plot</Label>
+              <Textarea
+                id="plot"
+                name="plot"
+                placeholder="Enter the movie plot"
+              />
+            </div>
+            <div>
+              <Label htmlFor="genres">Movie Genres</Label>
+              <MultiSelect
+                list={genresList}
+                placeholder="Select movie genres"
+                onValueChange={setGenres}
+              />
+            </div>
+            <div>
+              <Label htmlFor="rated">Movie Rated</Label>
+              <Select onValueChange={(val) => setRated(val)}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select a rating" />
                 </SelectTrigger>
