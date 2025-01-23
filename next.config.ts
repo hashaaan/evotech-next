@@ -2,7 +2,16 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  images: { domains: ["m.media-amazon.com"] },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.media-amazon.com",
+        port: "",
+        search: "",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

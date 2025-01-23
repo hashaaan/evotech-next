@@ -59,6 +59,7 @@ export const getMovies = async () => {
         {
           _id: string;
           title: string;
+          year: number;
           poster: string;
           plot: string;
           rated: number;

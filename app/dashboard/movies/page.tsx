@@ -10,7 +10,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-3xl font-bold">Movies</h1>
+      <h1 className="text-3xl font-bold hidden">Movies</h1>
       {movies ? (
         <div className="grid grid-cols-4 gap-4">
           {movies?.length &&

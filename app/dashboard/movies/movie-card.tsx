@@ -6,6 +6,7 @@ import { useState } from "react";
 type MovieCardProps = {
   _id: string;
   title: string;
+  year: number;
   poster: string;
   plot: string;
   rated: number;
@@ -13,6 +14,7 @@ type MovieCardProps = {
 
 export default function MovieCard({
   title,
+  year,
   poster,
   plot,
   rated,
@@ -21,7 +23,10 @@ export default function MovieCard({
   return (
     <div className="bg-white p-4 rounded">
       <h4 className="font-semibold text-center mb-2 text-lg">
-        {title !== "" ? title : "No Title"}
+        {title !== "" ? title : "No Title"}{" "}
+        <span className="text-gray-500 font-normal text-base">
+          {year && year}
+        </span>
       </h4>
       <div className="flex justify-center bg-black w-full h-[276px] mb-4 rounded">
         {poster && (

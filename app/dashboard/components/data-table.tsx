@@ -23,8 +23,9 @@ type Record = {
 
 export function DataTable() {
   const [records, setRecords] = useState<Record[]>([
-    { id: "1", name: "John Doe", email: "john@example.com", role: "Admin" },
-    { id: "2", name: "Jane Smith", email: "jane@example.com", role: "User" },
+    { id: "1", name: "Hangover", email: "2009", role: "Action/Comedy" },
+    { id: "2", name: "X-Men", email: "2000", role: "Action/Adventure" },
+    { id: "3", name: "King Kong", email: "2005", role: "Action/Adventure" },
   ]);
   const [editingRecord, setEditingRecord] = useState<Record | null>(null);
   const [deletingRecord, setDeletingRecord] = useState<Record | null>(null);
@@ -57,9 +58,9 @@ export function DataTable() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Name</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead>Role</TableHead>
+            <TableHead>Title</TableHead>
+            <TableHead>Year</TableHead>
+            <TableHead>Genres</TableHead>
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>

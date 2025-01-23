@@ -50,7 +50,11 @@ export function MultiSelect({
             if (!option) return null;
 
             return (
-              <ComboboxBadgeItem key={item} value={item} className="border">
+              <ComboboxBadgeItem
+                key={item}
+                value={item}
+                className="border bg-blue-50"
+              >
                 {option.label}
               </ComboboxBadgeItem>
             );

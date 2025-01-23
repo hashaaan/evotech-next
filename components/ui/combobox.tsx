@@ -202,7 +202,7 @@ const ComboboxItem = React.forwardRef<
   <ComboboxPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 text-sm outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[disabled]:opacity-50",
+      "relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 text-sm outline-none hover:bg-blue-50 data-[disabled]:pointer-events-none data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[disabled]:opacity-50",
       indicatorSide === "left" ? "pr-2 pl-8" : "pr-8 pl-2",
       className,
     )}
