@@ -40,11 +40,12 @@ export default function AddMovieForm() {
     const title = formData.get("title")?.toString();
     const year = Number(formData.get("year"));
     const plot = formData.get("plot")?.toString();
+    const poster = formData.get("poster")?.toString();
 
-    if (title && year && plot && rated) {
-      console.log({ title, year, plot, rated, genres });
+    if (title && year && plot && rated && poster) {
+      console.log({ title, year, plot, rated, genres, poster });
       setLoading(true);
-      await createMovie({ title, year, plot, rated, genres });
+      await createMovie({ title, year, plot, rated, genres, poster });
       setLoading(false);
     }
   };
@@ -104,6 +105,17 @@ export default function AddMovieForm() {
                 ))}
               </SelectContent>
             </Select>
+          </div>
+
+          <div>
+            <Label htmlFor="poster">Poster URL</Label>
+            <Input
+              id="poster"
+              name="poster"
+              type="text"
+              defaultValue="https://m.media-amazon.com/images/M/MV5BNzE1OWRlNDgtMTllNi00NTZiLWIyNTktYTk0MDY1ZWUwYTc5XkEyXkFqcGdeQXVyMjUxODE0MDY@._V1_SY1000_SX677_AL_.jpg"
+              placeholder="Enter the poster URL"
+            />
           </div>
         </CardContent>
         <CardFooter className="w-full flex justify-end space-x-2">
